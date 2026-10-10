@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Cosmos Explorer 4D — Black Hole Lab | FAIZAN</title>
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════ LOADER ═══════════ -->
+<div id="loader">
+  <div class="loader-bh">
+    <div class="loader-jet j1"></div>
+    <div class="loader-jet j2"></div>
+    <div class="loader-disk"></div>
+    <div class="loader-core"></div>
+  </div>
+  <h2>COSMOS ENGINE 4D</h2>
+  <p id="loadProgress">Initializing hyperreal renderer...</p>
+  <div class="loader-bar"><div class="loader-fill" id="loadFill"></div></div>
+  <div class="loader-pct"><span id="loadPct">0</span>%</div>
+</div>
+
+<!-- ═══════════ TOP NAV ═══════════ -->
+<header class="top-nav">
+  <div class="nav-left">
+    <div class="logo">
+      <div class="logo-mark"></div>
+      <span>COSMOS<span class="accent">4D</span></span>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-mode" id="navMode">SOLAR SYSTEM · 1:1 SCALE</div>
+  </div>
+  <div class="nav-right">
+    <div class="quality-badge">
+      <span class="q-dot"></span>
+      <span>8K ULTRA</span>
+    </div>
+    <div class="dev-badge">
+      <span class="dev-dot"></span>
+      DEVELOPED BY <b>FAIZAN</b>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ LEFT SIDEBAR — OBJECTS ═══════════ -->
+<aside class="sidebar left-sidebar">
+  <div class="sidebar-header">
+    <span class="sh-icon">◉</span>
+    <span>STELLAR OBJECTS</span>
+  </div>
+  <div class="object-list" id="objectList"></div>
+  <div class="sidebar-footer">
+    <button class="view-all-btn" id="viewAllBtn">
+      <span>◐</span> OVERVIEW
+    </button>
+  </div>
+</aside>
+
+<!-- ═══════════ RIGHT SIDEBAR — EXPERIMENTS ═══════════ -->
+<aside class="sidebar right-sidebar">
+  <div class="sidebar-header">
+    <span class="sh-icon">⚗</span>
+    <span>EXPERIMENT LAB</span>
+  </div>
+  <div class="exp-desc">Launch object into black hole</div>
+  <div class="exp-grid">
+    <button class="exp-card" data-type="astronaut">
+      <div class="exp-icon"><svg viewBox="0 0 64 64" width="42" height="42"><circle cx="32" cy="26" r="11" fill="#f0e8dc" stroke="#7fa8d8" stroke-width="2"/><ellipse cx="32" cy="26" rx="11" ry="8" fill="none" stroke="#88c0ff" stroke-width="1.5" opacity="0.7"/><rect x="26" y="18" width="12" height="3" fill="#88c0ff"/><rect x="18" y="38" width="28" height="18" rx="5" fill="#e8e0d0" stroke="#7fa8d8" stroke-width="2"/><rect x="14" y="40" width="5" height="14" rx="2" fill="#c8d8e8"/><rect x="45" y="40" width="5" height="14" rx="2" fill="#c8d8e8"/><circle cx="32" cy="47" r="3" fill="#ff4444"/></svg></div>
+      <div class="exp-label">Astronaut</div>
+      <div class="exp-meta">80 kg</div>
+    </button>
+    <button class="exp-card" data-type="rocket">
+      <div class="exp-icon"><svg viewBox="0 0 64 64" width="42" height="42"><path d="M32 6 L40 30 L40 46 L24 46 L24 30 Z" fill="#e8e8f0" stroke="#888" stroke-width="1.5"/><rect x="24" y="46" width="16" height="4" fill="#b0b0b0"/><path d="M24 30 L18 40 L18 46 L24 46 Z" fill="#c04040"/><path d="M40 30 L46 40 L46 46 L40 46 Z" fill="#c04040"/><circle cx="32" cy="26" r="4" fill="#66ccff" stroke="#4488bb" stroke-width="1"/><path d="M28 50 L32 62 L36 50 Z" fill="#ffaa33"/></svg></div>
+      <div class="exp-label">Rocket</div>
+      <div class="exp-meta">500 t</div>
+    </button>
+    <button class="exp-card" data-type="asteroid">
+      <div class="exp-icon"><svg viewBox="0 0 64 64" width="42" height="42"><path d="M20 24 Q14 20 18 14 Q26 8 36 12 Q46 10 50 20 Q56 28 48 36 Q52 46 42 50 Q32 56 24 48 Q14 46 16 36 Z" fill="#8a7a68" stroke="#5a4a3a" stroke-width="1.5"/><circle cx="24" cy="24" r="3" fill="#6a5a48"/><circle cx="40" cy="30" r="4" fill="#6a5a48"/><circle cx="30" cy="40" r="3" fill="#6a5a48"/><circle cx="44" cy="18" r="2" fill="#6a5a48"/></svg></div>
+      <div class="exp-label">Asteroid</div>
+      <div class="exp-meta">300 t</div>
+    </button>
+    <button class="exp-card" data-type="probe">
+      <div class="exp-icon"><svg viewBox="0 0 64 64" width="42" height="42"><rect x="20" y="26" width="24" height="14" rx="2" fill="#d0d0d0" stroke="#888" stroke-width="1.5"/><rect x="6" y="28" width="12" height="10" fill="#3a6ea8" stroke="#2255aa" stroke-width="1"/><rect x="46" y="28" width="12" height="10" fill="#3a6ea8" stroke="#2255aa" stroke-width="1"/><line x1="32" y1="26" x2="32" y2="12" stroke="#888" stroke-width="1.5"/><circle cx="32" cy="10" r="4" fill="#c8c8c8" stroke="#888" stroke-width="1"/><line x1="32" y1="40" x2="32" y2="54" stroke="#888" stroke-width="1.5"/><circle cx="32" cy="56" r="3" fill="#c8c8c8" stroke="#888" stroke-width="1"/></svg></div>
+      <div class="exp-label">Probe</div>
+      <div class="exp-meta">200 kg</div>
+    </button>
+    <button class="exp-card" data-type="planet">
+      <div class="exp-icon"><svg viewBox="0 0 64 64" width="42" height="42"><circle cx="32" cy="32" r="14" fill="#5a90d0"/><path d="M20 30 Q32 24 44 32 Q44 40 32 44 Q20 40 20 30" fill="#4a7a3a" opacity="0.85"/><ellipse cx="32" cy="32" rx="26" ry="7" fill="none" stroke="#b09060" stroke-width="2" transform="rotate(-18 32 32)"/></svg></div>
+      <div class="exp-label">Planet</div>
+      <div class="exp-meta">2×10²⁴ kg</div>
+    </button>
+    <button class="exp-card" data-type="star">
+      <div class="exp-icon"><svg viewBox="0 0 64 64" width="42" height="42"><defs><radialGradient id="starG"><stop offset="0" stop-color="#fffbe0"/><stop offset="0.5" stop-color="#ffcc44"/><stop offset="1" stop-color="#ff6600"/></radialGradient></defs><circle cx="32" cy="32" r="14" fill="url(#starG)"/><path d="M32 4 L34 26 L32 32 L30 26 Z" fill="#ffcc44"/><path d="M32 60 L30 38 L32 32 L34 38 Z" fill="#ffcc44"/><path d="M4 32 L26 30 L32 32 L26 34 Z" fill="#ffcc44"/><path d="M60 32 L38 34 L32 32 L38 30 Z" fill="#ffcc44"/></svg></div>
+      <div class="exp-label">Star</div>
+      <div class="exp-meta">10³⁰ kg</div>
+    </button>
+  </div>
+</aside>
+
+<!-- ═══════════ EXPERIMENT CAMERA CONTROLS ═══════════ -->
+<div class="exp-camera-panel" id="expCameraPanel">
+  <div class="ecp-title">◉ EXPERIMENT CAMERA</div>
+  <button class="ecp-btn active" data-view="chase">🎥 CHASE CAM</button>
+  <button class="ecp-btn" data-view="bh">⚫ BLACK HOLE CAM</button>
+  <button class="ecp-btn" data-view="top">⬆ TOP DOWN</button>
+  <button class="ecp-btn" data-view="side">➡ SIDE VIEW</button>
+  <button class="ecp-btn" data-view="first">👁 FIRST PERSON</button>
+</div>
+
+<!-- ═══════════ SPEED CONTROL ═══════════ -->
+<div class="speed-control" id="speedControl">
+  <div class="sc-label">SIM SPEED</div>
+  <input type="range" id="speedSlider" min="0.1" max="2" step="0.05" value="0.35">
+  <div class="sc-value" id="speedValue">0.35×</div>
+</div>
+
+<!-- ═══════════ BOTTOM CONTROLS ═══════════ -->
+<div class="bottom-controls">
+  <button class="ctl-btn" id="btnReset" title="Reset"><span>⟲</span><small>RESET</small></button>
+  <button class="ctl-btn" id="btnPause" title="Pause"><span>❚❚</span><small>PAUSE</small></button>
+  <button class="ctl-btn" id="btnSlowMo" title="Slow Motion"><span>🐢</span><small>SLOW-MO</small></button>
+  <button class="ctl-btn active" id="btnOrbits" title="Orbits"><span>◯</span><small>ORBITS</small></button>
+  <button class="ctl-btn active" id="btnLabels" title="Labels"><span>⌗</span><small>LABELS</small></button>
+  <button class="ctl-btn" id="btnCinematic" title="Cinematic"><span>▶</span><small>CINEMA</small></button>
+  <button class="ctl-btn" id="btnFullscreen" title="Fullscreen"><span>⛶</span><small>FULL</small></button>
+  <button class="ctl-btn" id="btnInfo" title="Info"><span>ⓘ</span><small>INFO</small></button>
+</div>
+
+<!-- ═══════════ TIME DILATION WIDGET ═══════════ -->
+<div class="time-widget" id="timeWidget">
+  <div class="tw-title">TIME DILATION</div>
+  <div class="tw-value" id="twValue">1.00×</div>
+  <div class="tw-bar"><div class="tw-fill" id="twFill"></div></div>
+  <div class="tw-note">Relativity factor (γ)</div>
+</div>
+
+<!-- ═══════════ PHYSICS HUD ═══════════ -->
+<div class="physics-hud" id="physicsHud">
+  <div class="hud-title">
+    <span class="pulse-dot"></span>
+    <span>TELEMETRY</span>
+  </div>
+  <div class="hud-row"><span class="hud-key">TARGET</span><b class="hud-val" id="hudObject">—</b></div>
+  <div class="hud-row"><span class="hud-key">DISTANCE</span><b class="hud-val" id="hudDist">—</b></div>
+  <div class="hud-row"><span class="hud-key">VELOCITY</span><b class="hud-val" id="hudVel">—</b></div>
+  <div class="hud-row"><span class="hud-key">GRAVITY</span><b class="hud-val" id="hudGrav">—</b></div>
+  <div class="hud-row"><span class="hud-key">STATUS</span><b class="hud-val status-ok" id="hudStatus">STABLE</b></div>
+</div>
+
+<!-- ═══════════ DISTANCE TRACKER ═══════════ -->
+<div class="distance-tracker" id="distanceTracker">
+  <div class="dt-title">◈ FALL TRACKER</div>
+  <div class="dt-obj" id="dtObj">—</div>
+  <div class="dt-progress">
+    <div class="dt-fill" id="dtFill"></div>
+    <div class="dt-marker dt-start">START</div>
+    <div class="dt-marker dt-horizon">HORIZON</div>
+  </div>
+  <div class="dt-stats">
+    <span>DIST: <b id="dtDist">—</b></span>
+    <span>SPEED: <b id="dtSpeed">—</b></span>
+    <span>ETA: <b id="dtEta">—</b></span>
+  </div>
+</div>
+
+<!-- ═══════════ INFO CARD ═══════════ -->
+<div class="info-card" id="planetInfo">
+  <button class="info-close" id="closePlanetInfo">✕</button>
+  <div class="info-header">
+    <div class="info-icon" id="infoIcon">🌍</div>
+    <div>
+      <div class="info-title" id="infoTitle">Earth</div>
+      <div class="info-subtitle" id="infoSubtitle">Terrestrial Planet</div>
+    </div>
+  </div>
+  <div class="info-stats" id="infoStats"></div>
+  <button class="info-zoom-btn" id="infoZoomBtn"><span>⊚</span> ENTER ORBIT VIEW</button>
+</div>
+
+<!-- ═══════════ MODAL ═══════════ -->
+<div class="modal" id="infoModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">✕</button>
+    <div class="modal-badge">ABOUT · 4D EDITION</div>
+    <h2>Cosmos Explorer 4D</h2>
+    <p class="modal-sub">A hyperreal 3D simulation with 4th-dimension time effects — relativistic dilation, gravitational lensing, real PBR materials, and cinematic physics.</p>
+    <div class="modal-grid">
+      <div class="modal-item"><b>Left-drag</b><span>Rotate</span></div>
+      <div class="modal-item"><b>Right-drag</b><span>Pan</span></div>
+      <div class="modal-item"><b>Scroll</b><span>Zoom</span></div>
+      <div class="modal-item"><b>Click</b><span>Inspect</span></div>
+      <div class="modal-item"><b>Experiment</b><span>Drop objects</span></div>
+      <div class="modal-item"><b>Slow-Mo</b><span>Watch physics</span></div>
+    </div>
+    <div class="modal-footer">
+      <div>DEVELOPED BY <b>FAIZAN</b></div>
+      <div class="modal-links">
+        <a href="https://www.facebook.com/Faizanislam.999" target="_blank">Facebook</a>
+        <a href="https://wa.me/8801646313289" target="_blank">WhatsApp</a>
+        <a href="https://faizanislam641-bit.github.io/" target="_blank">Portfolio</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HORIZON OVERLAY ═══════════ -->
+<div class="horizon-overlay" id="horizonOverlay">
+  <div class="horizon-vignette"></div>
+  <div class="horizon-scan"></div>
+  <div class="horizon-warp"></div>
+  <div class="horizon-content">
+    <div class="horizon-badge">⚠ EVENT HORIZON BREACHED</div>
+    <h2 id="horizonTitle">OBJECT CONSUMED</h2>
+    <p id="horizonDesc">The object has crossed the point of no return. Beyond this boundary, escape velocity exceeds c. Spacetime is infinitely curved.</p>
+    <div class="horizon-stats">
+      <div class="hs-item"><span>SINGULARITY DISTANCE</span><b id="hsDist">—</b></div>
+      <div class="hs-item"><span>TIME DILATION</span><b id="hsTime">—</b></div>
+      <div class="hs-item"><span>TIDAL FORCE</span><b id="hsTidal">—</b></div>
+      <div class="hs-item"><span>SPAGHETTIFICATION</span><b id="hsSpaghet">—</b></div>
+    </div>
+    <button class="horizon-exit" id="exitHorizon">← RETURN TO SPACE</button>
+  </div>
+</div>
+
+<!-- ═══════════ CINEMA BARS ═══════════ -->
+<div class="cinema-bars" id="cinemaBars">
+  <div class="cinema-bar top"></div>
+  <div class="cinema-bar bottom"></div>
+</div>
+
+<!-- ═══════════ ZOOM OVERLAY ═══════════ -->
+<div class="zoom-overlay" id="zoomOverlay">
+  <div class="zoom-header">
+    <div class="zoom-title" id="zoomTitle">EARTH</div>
+    <button class="zoom-close" id="zoomClose">← EXIT ORBIT</button>
+  </div>
+  <div class="zoom-info-panel" id="zoomInfoPanel"></div>
+</div>
+
+<canvas id="scene3d"></canvas>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="site-footer">
+  <div class="footer-left">
+    <div class="footer-brand">COSMOS<span>4D</span></div>
+    <div class="footer-sub">Developed by <b>FAIZAN</b> · © 2025</div>
+  </div>
+  <div class="footer-center">
+    <span class="footer-stat" id="footerFps">60 FPS</span>
+    <span class="footer-stat" id="footerObjects">0 OBJECTS</span>
+    <span class="footer-stat" id="footerMode">SOLAR SYSTEM</span>
+  </div>
+  <div class="footer-right">
+    <a href="https://www.facebook.com/Faizanislam.999" target="_blank" class="social-btn fb">
+      <span class="social-icon">f</span> Facebook
+    </a>
+    <a href="https://wa.me/8801646313289" target="_blank" class="social-btn wa">
+      <span class="social-icon">✆</span> WhatsApp
+    </a>
+    <a href="https://faizanislam641-bit.github.io/" target="_blank" class="social-btn pf">
+      <span class="social-icon">◈</span> Portfolio
+    </a>
+  </div>
+</footer>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
